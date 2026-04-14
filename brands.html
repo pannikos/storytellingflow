@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Content for Brands & Creators — Podcast, video, drone, reels. Storytelling Flow · Νίκος Παναγιωτίδης, Θεσσαλονίκη.">
+  <title>Brands & Creators — Storytelling Flow</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .hero-brands { background: var(--brown-deep); }
+    .hero-brands .hero-left { background: var(--brown-deep); }
+    .hero-brands .hero-eyebrow { color: rgba(201,168,124,0.55); }
+    .hero-brands .hero-eyebrow::before { background: rgba(201,168,124,0.25); }
+    .hero-brands h1 { color: #f5f0e8; }
+    .hero-brands h1 em { color: var(--brown-light); }
+    .hero-brands .hero-sub { color: rgba(245,240,232,0.48); }
+    .hero-brands .hero-right { background: #1e1710; }
+    .hero-brands .hero-img-placeholder { background: #1e1710; color: rgba(201,168,124,0.4); }
+    .hero-brands .btn-primary { background: var(--brown-light); color: var(--brown-deep); }
+    .hero-brands .btn-primary:hover { background: #f0e8d8; }
+    .hero-brands .btn-ghost { color: rgba(245,240,232,0.5); border-color: rgba(245,240,232,0.15); }
+    .hero-brands .btn-ghost:hover { border-color: rgba(245,240,232,0.4); color: #f5f0e8; }
+    .hero-brands .hero-accent-circle { background: var(--brown-light); }
+
+    .brands-services { background: #1e1710; }
+    .brands-services .service-full-card { background: #1e1710; border-bottom-color: rgba(255,255,255,0.05); }
+    .brands-services .service-full-card:nth-child(even) { background: #261e14; }
+    .brands-services .service-number { color: rgba(201,168,124,0.45); }
+    .brands-services .service-title { color: #f5f0e8; }
+    .brands-services .service-desc { color: rgba(245,240,232,0.48); }
+    .brands-services .service-include-item { color: rgba(245,240,232,0.45); }
+    .brands-services .service-include-item::before { color: var(--brown-light); }
+    .brands-services .tag { color: var(--brown-light); border-color: rgba(201,168,124,0.2); background: rgba(201,168,124,0.06); }
+    .brands-services .btn-primary { background: var(--brown-light); color: var(--brown-deep); }
+    .brands-services .btn-primary:hover { background: #f0e8d8; }
+
+    .brands-portfolio { background: #161008; }
+    .brands-portfolio .section-label { color: rgba(201,168,124,0.4); }
+    .brands-portfolio .img-placeholder { background: #261e14; }
+    .brands-portfolio .img-placeholder span { color: rgba(245,240,232,0.25); }
+    .brands-portfolio .btn-ghost { color: rgba(245,240,232,0.45); border-color: rgba(245,240,232,0.15); }
+    .brands-portfolio .btn-ghost:hover { color: #f5f0e8; border-color: rgba(245,240,232,0.4); }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" style="background:rgba(22,16,8,0.94);border-bottom-color:rgba(255,255,255,0.07);">
+    <a href="index.html" class="nav-logo" style="color:#f5f0e8;">Storytelling <span>Flow</span></a>
+    <ul class="nav-links">
+      <li><a href="food.html" style="color:rgba(245,240,232,0.35);">Food & Product</a></li>
+      <li><a href="brands.html" class="active" style="color:#f5f0e8;">Brands & Creators</a></li>
+      <li><a href="about.html" style="color:rgba(245,240,232,0.35);">About</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta" style="color:#f5f0e8;border-color:rgba(245,240,232,0.25);">Επικοινωνία</a>
+    <div class="nav-mobile-toggle" onclick="toggleMenu()" style="filter:invert(1);">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <main class="page">
+
+    <!-- HERO -->
+    <section class="hero hero-brands">
+      <div class="hero-left">
+        <p class="hero-eyebrow">Brands & Creators</p>
+        <h1>Content που<br>χτίζει<br><em>κοινό.</em></h1>
+        <p class="hero-sub">Για επιχειρήσεις και δημιουργούς — podcasts, promo videos, drone, reels με υπότιτλους, Airbnb photography και εκπαιδευτικά projects.</p>
+        <div class="hero-actions">
+          <a href="portfolio.html" class="btn-primary">Δες τη δουλειά</a>
+          <a href="contact.html" class="btn-ghost">Ζήτησε προσφορά</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-img-placeholder">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="18" r="8" stroke="#c9a87c" stroke-width="1"/>
+            <path d="M10 18 Q6 18 6 26 Q6 36 24 36 Q42 36 42 26 Q42 18 38 18" stroke="#c9a87c" stroke-width="1" fill="none"/>
+            <line x1="24" y1="36" x2="24" y2="43" stroke="#c9a87c" stroke-width="1"/>
+            <line x1="16" y1="43" x2="32" y2="43" stroke="#c9a87c" stroke-width="1"/>
+          </svg>
+          <span style="color:rgba(201,168,124,0.45);">Hero brands photo</span>
+        </div>
+        <div class="hero-accent-circle"></div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services-full brands-services" style="border-bottom:0.5px solid rgba(255,255,255,0.05);">
+
+      <div class="service-full-card">
+        <div class="service-full-left">
+          <p class="service-number">01</p>
+          <h2 class="service-title">Video Podcast παραγωγή</h2>
+          <div class="service-tags" style="margin-top:16px;">
+            <span class="tag">Podcast</span>
+            <span class="tag">YouTube</span>
+            <span class="tag">Spotify</span>
+          </div>
+        </div>
+        <div class="service-full-right">
+          <p class="service-desc" style="font-size:15px;margin-bottom:28px;">Πλήρης παραγωγή video podcast — από την ηχογράφηση μέχρι το έτοιμο επεισόδιο. Εσύ μιλάς, εγώ κάνω τα υπόλοιπα. Επαγγελματικός ήχος και εικόνα που κρατάει τους ακροατές από την πρώτη σεκόντ.</p>
+          <div class="service-includes">
+            <div class="service-include-item">Βίντεο & audio editing</div>
+            <div class="service-include-item">Mixing & mastering για streaming</div>
+            <div class="service-include-item">Show notes & chapter markers</div>
+            <div class="service-include-item">Artwork & branding για το podcast</div>
+            <div class="service-include-item">Upload σε Spotify, Apple Podcasts κλπ.</div>
+            <div class="service-include-item">Clips & reels για social media</div>
+          </div>
+          <div style="margin-top:32px;"><a href="contact.html" class="btn-primary">Ζήτησε προσφορά</a></div>
+        </div>
+      </div>
+
+      <div class="service-full-card">
+        <div class="service-full-left">
+          <p class="service-number">02</p>
+          <h2 class="service-title">Promo videos & Reels</h2>
+          <div class="service-tags" style="margin-top:16px;">
+            <span class="tag">Instagram</span>
+            <span class="tag">TikTok</span>
+            <span class="tag">YouTube</span>
+          </div>
+        </div>
+        <div class="service-full-right">
+          <p class="service-desc" style="font-size:15px;margin-bottom:28px;">Short-form και long-form βίντεο για την ψηφιακή παρουσία του brand σου. Από promotional videos μέχρι εκπαιδευτικά content — shooting, μοντάζ, color grading και υπότιτλοι.</p>
+          <div class="service-includes">
+            <div class="service-include-item">Promo & brand videos</div>
+            <div class="service-include-item">Instagram Reels & TikTok</div>
+            <div class="service-include-item">Εκπαιδευτικά & tutorial videos</div>
+            <div class="service-include-item">Μοντάζ & color grading</div>
+            <div class="service-include-item">Υπότιτλοι για shorts & reels</div>
+          </div>
+          <div style="margin-top:32px;"><a href="contact.html" class="btn-primary">Ζήτησε προσφορά</a></div>
+        </div>
+      </div>
+
+      <div class="service-full-card">
+        <div class="service-full-left">
+          <p class="service-number">03</p>
+          <h2 class="service-title">Υπηρεσίες Drone</h2>
+          <div class="service-tags" style="margin-top:16px;">
+            <span class="tag">Aerial</span>
+            <span class="tag">Real estate</span>
+            <span class="tag">Events</span>
+          </div>
+        </div>
+        <div class="service-full-right">
+          <p class="service-desc" style="font-size:15px;margin-bottom:28px;">Εναέρια φωτογράφιση και βιντεοσκόπηση για real estate, events, τουριστικά projects και brand campaigns. Εντυπωσιακές γωνίες που δεν μπορεί να πιάσει κανένα άλλο μέσο.</p>
+          <div class="service-includes">
+            <div class="service-include-item">Εναέρια φωτογράφιση & βιντεοσκόπηση</div>
+            <div class="service-include-item">Real estate & Airbnb</div>
+            <div class="service-include-item">Τουριστικά & τοπία</div>
+            <div class="service-include-item">Events & εκδηλώσεις</div>
+            <div class="service-include-item">Post-production & color grading</div>
+          </div>
+          <div style="margin-top:32px;"><a href="contact.html" class="btn-primary">Ζήτησε προσφορά</a></div>
+        </div>
+      </div>
+
+      <div class="service-full-card">
+        <div class="service-full-left">
+          <p class="service-number">04</p>
+          <h2 class="service-title">Airbnb & Real Estate Photography</h2>
+          <div class="service-tags" style="margin-top:16px;">
+            <span class="tag">Airbnb</span>
+            <span class="tag">Booking</span>
+            <span class="tag">Real estate</span>
+          </div>
+        </div>
+        <div class="service-full-right">
+          <p class="service-desc" style="font-size:15px;margin-bottom:28px;">Φωτογράφιση χώρων για Airbnb, Booking και real estate listings. Εικόνες που αυξάνουν τις κρατήσεις και παρουσιάζουν τον χώρο σου στο καλύτερο δυνατό φως.</p>
+          <div class="service-includes">
+            <div class="service-include-item">Interior & exterior photography</div>
+            <div class="service-include-item">Staging συμβουλές για καλύτερο αποτέλεσμα</div>
+            <div class="service-include-item">HDR processing για χώρους</div>
+            <div class="service-include-item">Εναέρια φωτογράφιση (drone) κατόπιν αιτήματος</div>
+            <div class="service-include-item">Βελτιστοποίηση για Airbnb & Booking listings</div>
+          </div>
+          <div style="margin-top:32px;"><a href="contact.html" class="btn-primary">Ζήτησε προσφορά</a></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- PORTFOLIO PREVIEW -->
+    <section class="portfolio-section brands-portfolio">
+      <p class="section-label">Brands & Creators portfolio</p>
+      <div class="portfolio-grid">
+        <div class="portfolio-item tall">
+          <div class="img-placeholder" style="min-height:100%;background:#261e14;"><span style="color:rgba(245,240,232,0.25);">Podcast 01</span></div>
+          <div class="portfolio-overlay"><span class="portfolio-overlay-text">Video Podcast</span></div>
+        </div>
+        <div class="portfolio-item">
+          <div class="img-placeholder" style="background:#1e1a10;"><span style="color:rgba(245,240,232,0.25);">Drone 01</span></div>
+          <div class="portfolio-overlay"><span class="portfolio-overlay-text">Drone</span></div>
+        </div>
+        <div class="portfolio-item">
+          <div class="img-placeholder" style="background:#201810;"><span style="color:rgba(245,240,232,0.25);">Promo 01</span></div>
+          <div class="portfolio-overlay"><span class="portfolio-overlay-text">Promo video</span></div>
+        </div>
+        <div class="portfolio-item">
+          <div class="img-placeholder" style="background:#261e14;"><span style="color:rgba(245,240,232,0.25);">Airbnb 01</span></div>
+          <div class="portfolio-overlay"><span class="portfolio-overlay-text">Airbnb</span></div>
+        </div>
+        <div class="portfolio-item">
+          <div class="img-placeholder" style="background:#1e1a10;"><span style="color:rgba(245,240,232,0.25);">Reels 01</span></div>
+          <div class="portfolio-overlay"><span class="portfolio-overlay-text">Reels</span></div>
+        </div>
+      </div>
+      <div style="margin-top:32px;"><a href="portfolio.html" class="btn-ghost">Δες όλο το portfolio →</a></div>
+    </section>
+
+    <!-- CONTACT CTA — dark -->
+    <section class="contact-cta" style="background:var(--brown-deep);border-bottom-color:rgba(255,255,255,0.05);">
+      <p class="contact-cta-text" style="color:#f5f0e8;">Έτοιμος να δουλέψουμε<br>μαζί; <em style="color:var(--brown-light);">Ας μιλήσουμε.</em></p>
+      <div class="contact-cta-right">
+        <p class="contact-email" style="color:rgba(245,240,232,0.4);">the.storytelling.flow@gmail.com</p>
+        <a href="contact.html" class="btn-primary" style="background:var(--brown-light);color:var(--brown-deep);">Επικοινωνία</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" style="background:var(--brown-deep);border-top-color:rgba(255,255,255,0.05);">
+    <span class="footer-copy" style="color:rgba(245,240,232,0.2);">© 2025 Storytelling Flow · Νίκος Παναγιωτίδης · Θεσσαλονίκη</span>
+    <div class="footer-links">
+      <a href="https://instagram.com" target="_blank" style="color:rgba(245,240,232,0.3);">Instagram</a>
+      <a href="https://youtube.com" target="_blank" style="color:rgba(245,240,232,0.3);">YouTube</a>
+      <a href="index.html" style="color:rgba(245,240,232,0.3);">← Αρχική</a>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const links = document.querySelector('.nav-links');
+      const cta = document.querySelector('.nav-cta');
+      if (links.style.display === 'flex') {
+        links.style.display = 'none';
+        if (cta) cta.style.display = 'none';
+      } else {
+        links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:rgba(22,16,8,0.97);padding:20px;gap:16px;border-bottom:0.5px solid rgba(255,255,255,0.07);backdrop-filter:blur(12px);z-index:99;';
+        if (cta) cta.style.cssText = 'display:block;margin:0 20px 16px;text-align:center;';
+      }
+    }
+  </script>
+
+</body>
+</html>

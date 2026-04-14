@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Storytelling Flow — Επαγγελματική φωτογράφιση & βίντεο για εστίαση, δημιουργούς και brands. Νίκος Παναγιωτίδης, Θεσσαλονίκη.">
+  <title>Storytelling Flow — Νίκος Παναγιωτίδης</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .split-page {
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .split-topnav {
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      background: var(--cream);
+      border-bottom: 0.5px solid var(--border);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 10;
+    }
+    .split-topnav-logo {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+    .split-topnav-logo span { color: var(--brown-mid); font-style: italic; }
+    .split-topnav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .split-topnav-links a {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .split-topnav-links a:hover { color: var(--text-primary); }
+    .split-topnav-cta {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      border: 0.5px solid rgba(44,36,22,0.3);
+      padding: 9px 20px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .split-topnav-cta:hover { background: var(--text-primary); color: var(--cream); }
+
+    .split-hint {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 10px;
+      flex-shrink: 0;
+      background: var(--cream);
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .split-body {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .split-side {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: flex 0.62s cubic-bezier(0.77,0,0.18,1);
+      position: relative;
+      overflow: hidden;
+      padding: 48px 56px;
+    }
+    .split-side:hover { flex: 1.7; }
+
+    .split-food { background: var(--cream-dark); }
+    .split-video { background: var(--brown-deep); border-left: 0.5px solid rgba(255,255,255,0.05); }
+
+    .split-side::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.45s;
+      pointer-events: none;
+    }
+    .split-food::before { background: #b8966a; }
+    .split-video::before { background: #080808; }
+    .split-side:hover::before { opacity: 0.25; }
+
+    .split-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .split-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-family: var(--font-body);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .split-eyebrow::before,
+    .split-eyebrow::after {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 0.5px;
+      flex-shrink: 0;
+    }
+    .split-food .split-eyebrow { color: rgba(44,36,22,0.38); }
+    .split-food .split-eyebrow::before,
+    .split-food .split-eyebrow::after { background: rgba(44,36,22,0.2); }
+    .split-video .split-eyebrow { color: rgba(201,168,124,0.45); }
+    .split-video .split-eyebrow::before,
+    .split-video .split-eyebrow::after { background: rgba(201,168,124,0.2); }
+
+    .split-title {
+      font-family: var(--font-display);
+      font-size: 46px;
+      font-weight: 300;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      margin-bottom: 22px;
+      transition: letter-spacing 0.45s ease;
+    }
+    .split-side:hover .split-title { letter-spacing: 0.01em; }
+    .split-food .split-title { color: var(--text-primary); }
+    .split-food .split-title em { font-style: italic; color: var(--brown-mid); display: block; }
+    .split-video .split-title { color: #f5f0e8; }
+    .split-video .split-title em { font-style: italic; color: var(--brown-light); display: block; }
+
+    .split-desc {
+      font-size: 13px;
+      line-height: 1.78;
+      max-width: 268px;
+      font-family: var(--font-body);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.38s 0.1s, transform 0.38s 0.1s;
+      margin-bottom: 24px;
+    }
+    .split-food .split-desc { color: rgba(44,36,22,0.58); }
+    .split-video .split-desc { color: rgba(245,240,232,0.48); }
+    .split-side:hover .split-desc { opacity: 1; transform: translateY(0); }
+
+    .split-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 28px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.38s 0.16s, transform 0.38s 0.16s;
+    }
+    .split-side:hover .split-tags { opacity: 1; transform: translateY(0); }
+
+    .split-tag {
+      font-size: 10px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      font-family: var(--font-body);
+      padding: 4px 10px;
+    }
+    .split-food .split-tag {
+      color: var(--brown-mid);
+      border: 0.5px solid rgba(139,94,60,0.25);
+      background: rgba(139,94,60,0.06);
+    }
+    .split-video .split-tag {
+      color: var(--brown-light);
+      border: 0.5px solid rgba(201,168,124,0.2);
+      background: rgba(201,168,124,0.06);
+    }
+
+    .split-btn {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 12px 26px;
+      font-family: var(--font-body);
+      border: none;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.38s 0.22s, transform 0.38s 0.22s, background 0.2s;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .split-side:hover .split-btn { opacity: 1; transform: translateY(0); }
+    .split-food .split-btn { background: var(--brown-deep); color: var(--cream); }
+    .split-food .split-btn:hover { background: var(--brown-mid); }
+    .split-video .split-btn { background: var(--brown-light); color: var(--brown-deep); }
+    .split-video .split-btn:hover { background: #f0e8d8; }
+
+    .split-divider {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 20;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      border: 0.5px solid var(--border);
+    }
+    .split-divider-line {
+      width: 0.5px;
+      height: 14px;
+      background: rgba(44,36,22,0.18);
+    }
+
+    .split-corner-label {
+      position: absolute;
+      bottom: 24px;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: var(--font-body);
+      opacity: 0;
+      transition: opacity 0.3s 0.1s;
+    }
+    .split-food .split-corner-label { right: 24px; color: rgba(44,36,22,0.3); }
+    .split-video .split-corner-label { left: 24px; color: rgba(245,240,232,0.2); }
+    .split-side:hover .split-corner-label { opacity: 1; }
+
+    @media (max-width: 768px) {
+      .split-topnav { padding: 0 20px; }
+      .split-topnav-links { display: none; }
+      .split-topnav-cta { display: none; }
+      .split-body { flex-direction: column; }
+      .split-side { padding: 36px 24px; }
+      .split-side:hover { flex: 1.5; }
+      .split-title { font-size: 34px; }
+      .split-video { border-left: none; border-top: 0.5px solid rgba(255,255,255,0.06); }
+      .split-divider { top: 50%; left: 50%; }
+      .split-corner-label { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="split-page">
+
+  <nav class="split-topnav">
+    <a href="index.html" class="split-topnav-logo">Storytelling <span>Flow</span></a>
+    <ul class="split-topnav-links">
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="services.html">Υπηρεσίες</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <a href="contact.html" class="split-topnav-cta">Επικοινωνία</a>
+  </nav>
+
+  <p class="split-hint">Επέλεξε την κατηγορία που σε αφορά</p>
+
+  <div class="split-body">
+
+    <!-- FOOD SIDE -->
+    <a href="food.html" class="split-side split-food">
+      <div class="split-content">
+        <p class="split-eyebrow">Εστίαση & γαστρονομία</p>
+        <h2 class="split-title">Food &<br>Product<br><em>Content</em></h2>
+        <p class="split-desc">Για εστιατόρια, καφέ, chefs, brands και βιβλία μαγειρικής — φωτογράφιση και βίντεο που κάνουν τον κόσμο να πεινάει.</p>
+        <div class="split-tags">
+          <span class="split-tag">Φωτογράφιση</span>
+          <span class="split-tag">Βίντεο</span>
+          <span class="split-tag">Food styling</span>
+          <span class="split-tag">Μοντάζ</span>
+        </div>
+        <span class="split-btn">Δες το portfolio →</span>
+      </div>
+      <span class="split-corner-label">Εστίαση & Γαστρονομία ↗</span>
+    </a>
+
+    <!-- BRANDS SIDE -->
+    <a href="brands.html" class="split-side split-video">
+      <div class="split-content">
+        <p class="split-eyebrow">Brands & Creators</p>
+        <h2 class="split-title">Content for<br>Brands &<br><em>Creators</em></h2>
+        <p class="split-desc">Για επιχειρήσεις και δημιουργούς — podcasts, promo videos, drone, reels με υπότιτλους και Airbnb photography.</p>
+        <div class="split-tags">
+          <span class="split-tag">Podcast</span>
+          <span class="split-tag">Promo video</span>
+          <span class="split-tag">Drone</span>
+          <span class="split-tag">Reels</span>
+        </div>
+        <span class="split-btn">Δες τη δουλειά →</span>
+      </div>
+      <span class="split-corner-label">Brands & Creators ↗</span>
+    </a>
+
+    <div class="split-divider">
+      <div class="split-divider-line"></div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
