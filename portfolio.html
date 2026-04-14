@@ -3,18 +3,208 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfolio — Food Photography, Product Photography, Podcast Production. Storytelling Flow · Νίκος Παναγιωτίδης.">
+  <meta name="description" content="Portfolio — Νίκος Παναγιωτίδης. Food Photography, Video, Podcast, Real Estate. Storytelling Flow, Θεσσαλονίκη.">
   <title>Portfolio — Storytelling Flow</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .portfolio-page { background: var(--cream); }
+
+    .portfolio-hero {
+      padding: 80px 40px 56px;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .portfolio-hero h1 {
+      font-family: var(--font-display);
+      font-size: 52px;
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+      line-height: 1.1;
+      margin-top: 16px;
+    }
+    .portfolio-hero h1 em { font-style: italic; color: var(--brown-mid); }
+
+    /* Sticky category nav */
+    .cat-nav {
+      position: sticky;
+      top: var(--nav-height);
+      z-index: 50;
+      background: rgba(245,240,232,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 0.5px solid var(--border);
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .cat-nav::-webkit-scrollbar { display: none; }
+
+    .cat-nav-item {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 14px 24px;
+      white-space: nowrap;
+      cursor: pointer;
+      border-bottom: 1.5px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      text-decoration: none;
+      display: block;
+      font-family: var(--font-body);
+    }
+    .cat-nav-item:hover { color: var(--text-primary); }
+    .cat-nav-item.active {
+      color: var(--brown-mid);
+      border-bottom-color: var(--brown-mid);
+    }
+    .cat-nav-divider {
+      width: 0.5px;
+      background: var(--border);
+      align-self: stretch;
+      margin: 8px 0;
+    }
+
+    /* Section */
+    .portfolio-section {
+      padding: 64px 40px;
+      border-bottom: 0.5px solid var(--border);
+      scroll-margin-top: calc(var(--nav-height) + 48px);
+    }
+    .portfolio-section:nth-child(even) { background: var(--cream-dark); }
+
+    .portfolio-section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+    .portfolio-section-title {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 300;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+    .portfolio-section-title em { font-style: italic; color: var(--brown-mid); }
+    .portfolio-section-count {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-family: var(--font-body);
+    }
+
+    /* Grids */
+    .grid-masonry {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+    .grid-masonry-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+    .grid-masonry-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+    .grid-wide {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 6px;
+    }
+
+    .pf-item {
+      position: relative;
+      overflow: hidden;
+      background: var(--cream-mid);
+      cursor: pointer;
+    }
+    .pf-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .pf-item:hover img { transform: scale(1.04); }
+
+    .pf-placeholder {
+      width: 100%;
+      background: var(--cream-dark);
+      display: flex;
+      align-items: flex-end;
+      padding: 12px;
+    }
+    .pf-placeholder span {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-family: var(--font-body);
+    }
+
+    .pf-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(44,36,22,0.55) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 16px;
+    }
+    .pf-item:hover .pf-overlay { opacity: 1; }
+    .pf-overlay-text {
+      font-size: 11px;
+      color: rgba(245,240,232,0.9);
+      letter-spacing: 0.06em;
+      font-family: var(--font-body);
+    }
+
+    /* Aspect ratios */
+    .ar-landscape { aspect-ratio: 4/3; }
+    .ar-portrait { aspect-ratio: 3/4; }
+    .ar-square { aspect-ratio: 1; }
+    .ar-wide { aspect-ratio: 16/9; }
+    .ar-tall { aspect-ratio: 2/3; }
+
+    /* Video section dark */
+    .section-dark {
+      background: var(--brown-deep) !important;
+      border-bottom-color: rgba(255,255,255,0.05) !important;
+    }
+    .section-dark .portfolio-section-title { color: #f5f0e8; }
+    .section-dark .portfolio-section-title em { color: var(--brown-light); }
+    .section-dark .portfolio-section-count { color: rgba(245,240,232,0.3); }
+    .section-dark .pf-placeholder { background: #1e1710; }
+    .section-dark .pf-placeholder span { color: rgba(245,240,232,0.2); }
+    .section-dark .section-label { color: rgba(201,168,124,0.4); }
+
+    @media (max-width: 768px) {
+      .portfolio-hero { padding: 48px 20px 36px; }
+      .portfolio-hero h1 { font-size: 36px; }
+      .portfolio-section { padding: 48px 20px; }
+      .grid-masonry { grid-template-columns: 1fr 1fr; }
+      .grid-masonry-4 { grid-template-columns: 1fr 1fr; }
+      .grid-wide { grid-template-columns: 1fr 1fr; }
+      .grid-masonry-2 { grid-template-columns: 1fr; }
+      .cat-nav-item { padding: 12px 16px; font-size: 10px; }
+    }
+  </style>
 </head>
 <body>
 
   <nav class="nav">
     <a href="index.html" class="nav-logo">Storytelling <span>Flow</span></a>
     <ul class="nav-links">
-      <li><a href="index.html">Αρχική</a></li>
+      <li><a href="food.html">Food & Product</a></li>
+      <li><a href="brands.html">Brands & Creators</a></li>
       <li><a href="portfolio.html" class="active">Portfolio</a></li>
-      <li><a href="services.html">Υπηρεσίες</a></li>
       <li><a href="about.html">About</a></li>
     </ul>
     <a href="contact.html" class="nav-cta">Επικοινωνία</a>
@@ -23,102 +213,311 @@
     </div>
   </nav>
 
-  <main class="page">
+  <main class="page portfolio-page">
 
-    <header class="page-header">
+    <!-- HERO -->
+    <header class="portfolio-hero">
       <p class="section-label">Portfolio</p>
-      <h1>Δουλειές που<br><em>μιλάνε</em> μόνες τους</h1>
+      <h1>Η δουλειά<br>μου σε <em>εικόνες</em></h1>
     </header>
 
-    <section class="portfolio-full">
+    <!-- STICKY CAT NAV -->
+    <nav class="cat-nav" id="catNav">
+      <a href="#sweet" class="cat-nav-item">Sweet</a>
+      <a href="#cooking" class="cat-nav-item">Cooking</a>
+      <a href="#drinks" class="cat-nav-item">Drinks & More</a>
+      <a href="#delicatessen" class="cat-nav-item">Delicatessen</a>
+      <div class="cat-nav-divider"></div>
+      <a href="#editorial" class="cat-nav-item">Editorial</a>
+      <a href="#portrait" class="cat-nav-item">Portrait</a>
+      <a href="#realestate" class="cat-nav-item">Real Estate</a>
+      <div class="cat-nav-divider"></div>
+      <a href="#video" class="cat-nav-item">Video</a>
+      <a href="#stopmotion" class="cat-nav-item">Stop Motion</a>
+      <a href="#podcast" class="cat-nav-item">Podcast</a>
+    </nav>
 
-      <!-- FOOD PHOTOGRAPHY -->
-      <div class="portfolio-full-grid">
-        <h3 class="portfolio-cat-title">Food <em>Photography</em></h3>
+    <!-- ── FOOD SECTIONS ── -->
 
-        <div class="portfolio-full-item">
-          <!-- <img src="images/food-1.jpg" alt="Food photography"> -->
-          <div class="img-placeholder" style="aspect-ratio:4/3;min-height:unset;">
-            <span>Food 01</span>
-          </div>
-          <div class="portfolio-overlay"><span class="portfolio-overlay-text">Εστιατόριο</span></div>
+    <section class="portfolio-section" id="sweet">
+      <div class="portfolio-section-header">
+        <h2 class="portfolio-section-title"><em>Sweet</em></h2>
+        <span class="portfolio-section-count">Ζαχαροπλαστεία · Pastry · Γλυκά</span>
+      </div>
+      <div class="grid-wide">
+        <div class="pf-item" style="grid-row:span 2;">
+          <img src="images/_NZ60128.jpg" alt="Sweet photography" onerror="this.parentElement.innerHTML='<div class=\'pf-placeholder\' style=\'min-height:400px;\'><span>Sweet 01</span></div>'">
+          <div class="pf-overlay"><span class="pf-overlay-text">Sweet</span></div>
         </div>
-        <div class="portfolio-full-item">
-          <div class="img-placeholder" style="aspect-ratio:4/3;min-height:unset;">
-            <span>Food 02</span>
-          </div>
-          <div class="portfolio-overlay"><span class="portfolio-overlay-text">Editorial</span></div>
+        <div class="pf-item ar-square">
+          <img src="images/_NZ60175.jpg" alt="Sweet photography" onerror="this.parentElement.innerHTML='<div class=\'pf-placeholder ar-square\'><span>Sweet 02</span></div>'">
+          <div class="pf-overlay"><span class="pf-overlay-text">Sweet</span></div>
         </div>
-        <div class="portfolio-full-item">
-          <div class="img-placeholder" style="aspect-ratio:4/3;min-height:unset;">
-            <span>Food 03</span>
-          </div>
-          <div class="portfolio-overlay"><span class="portfolio-overlay-text">Menu shoot</span></div>
+        <div class="pf-item ar-square">
+          <img src="images/_NZ60279.jpg" alt="Sweet photography" onerror="this.parentElement.innerHTML='<div class=\'pf-placeholder ar-square\'><span>Sweet 03</span></div>'">
+          <div class="pf-overlay"><span class="pf-overlay-text">Sweet</span></div>
         </div>
-        <div class="portfolio-full-item">
-          <div class="img-placeholder" style="aspect-ratio:4/3;min-height:unset;">
-            <span>Food 04</span>
-          </div>
-          <div class="portfolio-overlay"><span class="portfolio-overlay-text">Brand</span></div>
+        <div class="pf-item ar-square">
+          <img src="images/_NZ61137.jpg" alt="Sweet photography" onerror="this.parentElement.innerHTML='<div class=\'pf-placeholder ar-square\'><span>Sweet 04</span></div>'">
+          <div class="pf-overlay"><span class="pf-overlay-text">Sweet</span></div>
         </div>
-        <div class="portfolio-full-item">
-          <div class="img-placeholder" style="aspect-ratio:4/3;min-height:unset;">
-            <span>Food 05</span>
-          </div>
-          <div class="portfolio-overlay"><span class="portfolio-overlay-text">Café</span></div>
-        </div>
-        <div class="portfolio-full-item">
-          <div class="img-placeholder" style="aspect-ratio:4/3;min-height:unset;">
-            <span>Food 06</span>
-          </div>
-          <div class="portfolio-overlay"><span class="portfolio-overlay-text">Εστιατόριο</span></div>
+        <div class="pf-item ar-square">
+          <img src="images/_NZ61273.jpg" alt="Sweet photography" onerror="this.parentElement.innerHTML='<div class=\'pf-placeholder ar-square\'><span>Sweet 05</span></div>'">
+          <div class="pf-overlay"><span class="pf-overlay-text">Sweet</span></div>
         </div>
       </div>
-
-      <!-- PRODUCT PHOTOGRAPHY -->
-      <div class="portfolio-full-grid" style="margin-top:0;border-top:0.5px solid var(--border);padding-top:40px;">
-        <h3 class="portfolio-cat-title">Product <em>Photography</em></h3>
-
-        <div class="portfolio-full-item">
-          <div class="img-placeholder" style="aspect-ratio:4/3;min-height:unset;">
-            <span>Product 01</span>
-          </div>
-          <div class="portfolio-overlay"><span class="portfolio-overlay-text">E-commerce</span></div>
-        </div>
-        <div class="portfolio-full-item">
-          <div class="img-placeholder" style="aspect-ratio:4/3;min-height:unset;">
-            <span>Product 02</span>
-          </div>
-          <div class="portfolio-overlay"><span class="portfolio-overlay-text">Packaging</span></div>
-        </div>
-        <div class="portfolio-full-item">
-          <div class="img-placeholder" style="aspect-ratio:4/3;min-height:unset;">
-            <span>Product 03</span>
-          </div>
-          <div class="portfolio-overlay"><span class="portfolio-overlay-text">Brand campaign</span></div>
-        </div>
-        <div class="portfolio-full-item">
-          <div class="img-placeholder" style="aspect-ratio:4/3;min-height:unset;">
-            <span>Product 04</span>
-          </div>
-          <div class="portfolio-overlay"><span class="portfolio-overlay-text">Lifestyle</span></div>
-        </div>
-        <div class="portfolio-full-item">
-          <div class="img-placeholder" style="aspect-ratio:4/3;min-height:unset;">
-            <span>Product 05</span>
-          </div>
-          <div class="portfolio-overlay"><span class="portfolio-overlay-text">E-commerce</span></div>
-        </div>
-        <div class="portfolio-full-item">
-          <div class="img-placeholder" style="aspect-ratio:4/3;min-height:unset;">
-            <span>Product 06</span>
-          </div>
-          <div class="portfolio-overlay"><span class="portfolio-overlay-text">Packaging</span></div>
-        </div>
-      </div>
-
     </section>
 
+    <section class="portfolio-section" id="cooking">
+      <div class="portfolio-section-header">
+        <h2 class="portfolio-section-title"><em>Cooking</em></h2>
+        <span class="portfolio-section-count">Εστιατόρια · Chefs · Μαγειρική</span>
+      </div>
+      <div class="grid-masonry">
+        <div class="pf-item ar-landscape">
+          <img src="images/_NZ61275.jpg" alt="Cooking photography" onerror="this.parentElement.innerHTML='<div class=\'pf-placeholder ar-landscape\'><span>Cooking 01</span></div>'">
+          <div class="pf-overlay"><span class="pf-overlay-text">Cooking</span></div>
+        </div>
+        <div class="pf-item ar-landscape">
+          <div class="pf-placeholder ar-landscape"><span>Cooking 02</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Cooking</span></div>
+        </div>
+        <div class="pf-item ar-landscape">
+          <div class="pf-placeholder ar-landscape"><span>Cooking 03</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Cooking</span></div>
+        </div>
+        <div class="pf-item ar-landscape">
+          <div class="pf-placeholder ar-landscape"><span>Cooking 04</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Cooking</span></div>
+        </div>
+        <div class="pf-item ar-landscape">
+          <div class="pf-placeholder ar-landscape"><span>Cooking 05</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Cooking</span></div>
+        </div>
+        <div class="pf-item ar-landscape">
+          <div class="pf-placeholder ar-landscape"><span>Cooking 06</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Cooking</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio-section" id="drinks">
+      <div class="portfolio-section-header">
+        <h2 class="portfolio-section-title">Drinks <em>& More</em></h2>
+        <span class="portfolio-section-count">Cocktails · Καφές · Ποτά</span>
+      </div>
+      <div class="grid-masonry-2">
+        <div class="pf-item ar-landscape">
+          <div class="pf-placeholder ar-landscape"><span>Drinks 01</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Drinks</span></div>
+        </div>
+        <div class="pf-item ar-landscape">
+          <div class="pf-placeholder ar-landscape"><span>Drinks 02</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Drinks</span></div>
+        </div>
+        <div class="pf-item ar-landscape">
+          <div class="pf-placeholder ar-landscape"><span>Drinks 03</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Drinks</span></div>
+        </div>
+        <div class="pf-item ar-landscape">
+          <div class="pf-placeholder ar-landscape"><span>Drinks 04</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Drinks</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio-section" id="delicatessen">
+      <div class="portfolio-section-header">
+        <h2 class="portfolio-section-title"><em>Delicatessen</em></h2>
+        <span class="portfolio-section-count">Προϊόντα · Packaging · E-commerce</span>
+      </div>
+      <div class="grid-masonry-4">
+        <div class="pf-item ar-square">
+          <div class="pf-placeholder ar-square"><span>Deli 01</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Delicatessen</span></div>
+        </div>
+        <div class="pf-item ar-square">
+          <div class="pf-placeholder ar-square"><span>Deli 02</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Delicatessen</span></div>
+        </div>
+        <div class="pf-item ar-square">
+          <div class="pf-placeholder ar-square"><span>Deli 03</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Delicatessen</span></div>
+        </div>
+        <div class="pf-item ar-square">
+          <div class="pf-placeholder ar-square"><span>Deli 04</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Delicatessen</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PHOTOGRAPHY SECTIONS ── -->
+
+    <section class="portfolio-section" id="editorial">
+      <div class="portfolio-section-header">
+        <h2 class="portfolio-section-title"><em>Editorial</em></h2>
+        <span class="portfolio-section-count">Βιβλία · Εκδόσεις · Περιοδικά</span>
+      </div>
+      <div class="grid-wide">
+        <div class="pf-item ar-landscape">
+          <div class="pf-placeholder ar-landscape"><span>Editorial 01</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Editorial</span></div>
+        </div>
+        <div class="pf-item ar-landscape">
+          <div class="pf-placeholder ar-landscape"><span>Editorial 02</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Editorial</span></div>
+        </div>
+        <div class="pf-item ar-landscape">
+          <div class="pf-placeholder ar-landscape"><span>Editorial 03</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Editorial</span></div>
+        </div>
+        <div class="pf-item ar-landscape">
+          <div class="pf-placeholder ar-landscape"><span>Editorial 04</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Editorial</span></div>
+        </div>
+        <div class="pf-item ar-landscape">
+          <div class="pf-placeholder ar-landscape"><span>Editorial 05</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Editorial</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio-section" id="portrait">
+      <div class="portfolio-section-header">
+        <h2 class="portfolio-section-title"><em>Portrait</em></h2>
+        <span class="portfolio-section-count">Chefs · Επαγγελματικά · Lifestyle</span>
+      </div>
+      <div class="grid-masonry">
+        <div class="pf-item ar-portrait">
+          <div class="pf-placeholder ar-portrait"><span>Portrait 01</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Portrait</span></div>
+        </div>
+        <div class="pf-item ar-portrait">
+          <div class="pf-placeholder ar-portrait"><span>Portrait 02</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Portrait</span></div>
+        </div>
+        <div class="pf-item ar-portrait">
+          <div class="pf-placeholder ar-portrait"><span>Portrait 03</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Portrait</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio-section" id="realestate">
+      <div class="portfolio-section-header">
+        <h2 class="portfolio-section-title">Real <em>Estate</em></h2>
+        <span class="portfolio-section-count">Airbnb · Booking · Ακίνητα</span>
+      </div>
+      <div class="grid-masonry">
+        <div class="pf-item ar-landscape">
+          <div class="pf-placeholder ar-landscape"><span>Real Estate 01</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Real Estate</span></div>
+        </div>
+        <div class="pf-item ar-landscape">
+          <div class="pf-placeholder ar-landscape"><span>Real Estate 02</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Real Estate</span></div>
+        </div>
+        <div class="pf-item ar-landscape">
+          <div class="pf-placeholder ar-landscape"><span>Real Estate 03</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Real Estate</span></div>
+        </div>
+        <div class="pf-item ar-landscape">
+          <div class="pf-placeholder ar-landscape"><span>Real Estate 04</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Real Estate</span></div>
+        </div>
+        <div class="pf-item ar-landscape">
+          <div class="pf-placeholder ar-landscape"><span>Real Estate 05</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Real Estate</span></div>
+        </div>
+        <div class="pf-item ar-landscape">
+          <div class="pf-placeholder ar-landscape"><span>Real Estate 06</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Real Estate</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── VIDEO SECTIONS ── -->
+
+    <section class="portfolio-section section-dark" id="video">
+      <div class="portfolio-section-header">
+        <h2 class="portfolio-section-title">Video <em>& Promo</em></h2>
+        <span class="portfolio-section-count" style="color:rgba(245,240,232,0.3);">Reels · Social · Brand videos</span>
+      </div>
+      <div class="grid-masonry">
+        <div class="pf-item ar-wide" style="background:#1e1710;">
+          <div class="pf-placeholder ar-wide" style="background:#1e1710;"><span>Video 01</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Brand video</span></div>
+        </div>
+        <div class="pf-item ar-wide" style="background:#1e1710;">
+          <div class="pf-placeholder ar-wide" style="background:#1e1710;"><span>Video 02</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Reels</span></div>
+        </div>
+        <div class="pf-item ar-wide" style="background:#1e1710;">
+          <div class="pf-placeholder ar-wide" style="background:#1e1710;"><span>Video 03</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Promo</span></div>
+        </div>
+        <div class="pf-item ar-wide" style="background:#261e14;">
+          <div class="pf-placeholder ar-wide" style="background:#261e14;"><span>Video 04</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Social</span></div>
+        </div>
+        <div class="pf-item ar-wide" style="background:#261e14;">
+          <div class="pf-placeholder ar-wide" style="background:#261e14;"><span>Video 05</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Brand video</span></div>
+        </div>
+        <div class="pf-item ar-wide" style="background:#1e1710;">
+          <div class="pf-placeholder ar-wide" style="background:#1e1710;"><span>Video 06</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Reels</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio-section section-dark" id="stopmotion">
+      <div class="portfolio-section-header">
+        <h2 class="portfolio-section-title">Stop <em>Motion</em></h2>
+        <span class="portfolio-section-count" style="color:rgba(245,240,232,0.3);">Animation · Food · Product</span>
+      </div>
+      <div class="grid-masonry-2">
+        <div class="pf-item ar-square" style="background:#1e1710;">
+          <div class="pf-placeholder ar-square" style="background:#1e1710;"><span>Stop Motion 01</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Stop Motion</span></div>
+        </div>
+        <div class="pf-item ar-square" style="background:#261e14;">
+          <div class="pf-placeholder ar-square" style="background:#261e14;"><span>Stop Motion 02</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Stop Motion</span></div>
+        </div>
+        <div class="pf-item ar-square" style="background:#261e14;">
+          <div class="pf-placeholder ar-square" style="background:#261e14;"><span>Stop Motion 03</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Stop Motion</span></div>
+        </div>
+        <div class="pf-item ar-square" style="background:#1e1710;">
+          <div class="pf-placeholder ar-square" style="background:#1e1710;"><span>Stop Motion 04</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Stop Motion</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio-section section-dark" id="podcast">
+      <div class="portfolio-section-header">
+        <h2 class="portfolio-section-title">YouTube <em>& Podcast</em></h2>
+        <span class="portfolio-section-count" style="color:rgba(245,240,232,0.3);">Video Podcast · Long-form · Docs</span>
+      </div>
+      <div class="grid-masonry">
+        <div class="pf-item ar-wide" style="background:#1e1710;">
+          <div class="pf-placeholder ar-wide" style="background:#1e1710;"><span>Podcast 01</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Podcast</span></div>
+        </div>
+        <div class="pf-item ar-wide" style="background:#261e14;">
+          <div class="pf-placeholder ar-wide" style="background:#261e14;"><span>Podcast 02</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">YouTube</span></div>
+        </div>
+        <div class="pf-item ar-wide" style="background:#1e1710;">
+          <div class="pf-placeholder ar-wide" style="background:#1e1710;"><span>Podcast 03</span></div>
+          <div class="pf-overlay"><span class="pf-overlay-text">Podcast</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
     <section class="contact-cta">
       <p class="contact-cta-text">Σου αρέσει αυτό<br>που βλέπεις; <em>Ας μιλήσουμε.</em></p>
       <div class="contact-cta-right">
@@ -129,11 +528,11 @@
   </main>
 
   <footer class="footer">
-    <span class="footer-copy">© 2025 Storytelling Flow · Νίκος Παναγιωτίδης</span>
+    <span class="footer-copy">© 2025 Storytelling Flow · Νίκος Παναγιωτίδης · Θεσσαλονίκη</span>
     <div class="footer-links">
       <a href="https://instagram.com" target="_blank">Instagram</a>
       <a href="https://youtube.com" target="_blank">YouTube</a>
-      <a href="https://food-photography.gr">food-photography.gr</a>
+      <a href="index.html">← Αρχική</a>
     </div>
   </footer>
 
@@ -145,10 +544,29 @@
         links.style.display = 'none';
         if (cta) cta.style.display = 'none';
       } else {
-        links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:rgba(245,240,232,0.97);padding:20px 20px;gap:16px;border-bottom:0.5px solid rgba(44,36,22,0.1);backdrop-filter:blur(12px);';
+        links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:rgba(245,240,232,0.97);padding:20px;gap:16px;border-bottom:0.5px solid rgba(44,36,22,0.1);backdrop-filter:blur(12px);z-index:99;';
         if (cta) cta.style.cssText = 'display:block;margin:0 20px 16px;text-align:center;';
       }
     }
+
+    // Active cat nav on scroll
+    const sections = document.querySelectorAll('.portfolio-section[id]');
+    const navItems = document.querySelectorAll('.cat-nav-item[href^="#"]');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navItems.forEach(item => item.classList.remove('active'));
+          const active = document.querySelector(`.cat-nav-item[href="#${entry.target.id}"]`);
+          if (active) {
+            active.classList.add('active');
+            active.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          }
+        }
+      });
+    }, { threshold: 0.3 });
+
+    sections.forEach(s => observer.observe(s));
   </script>
 
 </body>
