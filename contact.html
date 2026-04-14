@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Επικοινωνία — Storytelling Flow · Νίκος Παναγιωτίδης. Food Photography & Podcast Production.">
+  <title>Επικοινωνία — Storytelling Flow</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .contact-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .contact-form-group label {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .contact-form-group input,
+    .contact-form-group textarea,
+    .contact-form-group select {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--text-primary);
+      background: var(--cream);
+      border: 0.5px solid rgba(44,36,22,0.2);
+      padding: 12px 14px;
+      outline: none;
+      width: 100%;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+    .contact-form-group input:focus,
+    .contact-form-group textarea:focus,
+    .contact-form-group select:focus {
+      border-color: var(--brown-mid);
+    }
+    .contact-form-group textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+    .contact-form-group select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238b5e3c' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Storytelling <span>Flow</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Αρχική</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="services.html">Υπηρεσίες</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta active">Επικοινωνία</a>
+    <div class="nav-mobile-toggle" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <main class="page">
+
+    <header class="page-header">
+      <p class="section-label">Επικοινωνία</p>
+      <h1>Ας φτιάξουμε<br>κάτι <em>μαζί</em></h1>
+      <p>Πες μου για το project σου και θα επικοινωνήσω μαζί σου εντός 24 ωρών.</p>
+    </header>
+
+    <section class="contact-page">
+
+      <div class="contact-left">
+        <form onsubmit="handleSubmit(event)">
+
+          <div class="contact-form-group">
+            <label for="name">Όνομα</label>
+            <input type="text" id="name" name="name" placeholder="Το όνομά σου" required>
+          </div>
+
+          <div class="contact-form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="email@example.com" required>
+          </div>
+
+          <div class="contact-form-group">
+            <label for="service">Υπηρεσία</label>
+            <select id="service" name="service">
+              <option value="">Επέλεξε υπηρεσία</option>
+              <option value="food">Food Photography</option>
+              <option value="product">Product Photography</option>
+              <option value="podcast">Podcast Production</option>
+              <option value="other">Άλλο</option>
+            </select>
+          </div>
+
+          <div class="contact-form-group">
+            <label for="message">Μήνυμα</label>
+            <textarea id="message" name="message" placeholder="Πες μου για το project σου..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width:100%;text-align:center;border:none;cursor:pointer;font-family:var(--font-body);">Αποστολή μηνύματος</button>
+
+        </form>
+
+        <div id="form-success" style="display:none;margin-top:20px;padding:16px;background:rgba(139,94,60,0.08);border:0.5px solid rgba(139,94,60,0.2);">
+          <p style="font-size:14px;color:var(--brown-mid);">Το μήνυμά σου στάλθηκε! Θα επικοινωνήσω μαζί σου εντός 24 ωρών.</p>
+        </div>
+      </div>
+
+      <div class="contact-right">
+        <p style="font-family:var(--font-display);font-size:24px;font-weight:300;color:var(--text-primary);line-height:1.4;margin-bottom:40px;">Κάθε καλή συνεργασία ξεκινά<br>με μια απλή συνομιλία.</p>
+
+        <div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">Email</span>
+            <span class="contact-info-value"><a href="mailto:the.storytelling.flow@gmail.com">the.storytelling.flow@gmail.com</a></span>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">Τηλέφωνο</span>
+            <span class="contact-info-value"><a href="tel:+306981108154" style="color:var(--brown-mid);">+30 698 110 8154</a></span>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">Βάση</span>
+            <span class="contact-info-value">Ελλάδα</span>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">Διαθέσιμος για</span>
+            <span class="contact-info-value" style="font-size:15px;">On-site & remote projects</span>
+          </div>
+        </div>
+
+        <div style="margin-top:40px;">
+          <p class="section-label" style="margin-bottom:14px;">Social</p>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <a href="https://instagram.com" target="_blank" style="font-size:13px;color:var(--text-secondary);display:flex;align-items:center;gap:8px;transition:color 0.2s;" onmouseover="this.style.color='var(--brown-mid)'" onmouseout="this.style.color='var(--text-secondary)'">
+              <span style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);width:60px;">Instagram</span>
+              @storytellingflow
+            </a>
+            <a href="https://youtube.com" target="_blank" style="font-size:13px;color:var(--text-secondary);display:flex;align-items:center;gap:8px;transition:color 0.2s;" onmouseover="this.style.color='var(--brown-mid)'" onmouseout="this.style.color='var(--text-secondary)'">
+              <span style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);width:60px;">YouTube</span>
+              Storytelling Flow
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span class="footer-copy">© 2025 Storytelling Flow · Νίκος Παναγιωτίδης</span>
+    <div class="footer-links">
+      <a href="https://instagram.com" target="_blank">Instagram</a>
+      <a href="https://youtube.com" target="_blank">YouTube</a>
+      <a href="https://food-photography.gr">food-photography.gr</a>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const links = document.querySelector('.nav-links');
+      const cta = document.querySelector('.nav-cta');
+      if (links.style.display === 'flex') {
+        links.style.display = 'none';
+        if (cta) cta.style.display = 'none';
+      } else {
+        links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:rgba(245,240,232,0.97);padding:20px 20px;gap:16px;border-bottom:0.5px solid rgba(44,36,22,0.1);backdrop-filter:blur(12px);';
+        if (cta) cta.style.cssText = 'display:block;margin:0 20px 16px;text-align:center;';
+      }
+    }
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.textContent = 'Αποστολή...';
+      btn.disabled = true;
+      setTimeout(() => {
+        e.target.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      }, 800);
+    }
+  </script>
+
+</body>
+</html>
